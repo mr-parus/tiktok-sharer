@@ -4,6 +4,8 @@
 # compiled output
 /dist
 /node_modules
+/public/*
+/public/.gitkeep
 
 # Logs
 logs
