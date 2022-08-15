@@ -5,23 +5,17 @@ import * as session from 'express-session';
 import { AppTikTokSharerModule } from './app/app.tiktok-sharer.module';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppTikTokSharerModule, {
-    logger: ['error'],
-  });
+  const app = await NestFactory.create(AppTikTokSharerModule, { cors: true });
 
   const configService = app.get<ConfigService>(ConfigService);
   const sessionSecret = configService.getEnv(EnvVar.SERVER_SESSION_SECRET);
-  const port = configService.getEnv(EnvVar.SERVER_PORT);
+  const port = configService.getEnv(EnvVar.PORT);
 
   app.use(
-    session({
-      resave: false,
-      secret: sessionSecret,
-      saveUninitialized: false,
-    }),
+    session({ resave: false, secret: sessionSecret, saveUninitialized: false }),
   );
 
-  await app.listen(port);
+  await app.listen(port, () => console.log(`Server started at port: ${port}`));
 }
 
 bootstrap().catch(console.error);

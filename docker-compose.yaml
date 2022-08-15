@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  web:
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PORT=${PORT}
+      - SERVER_BASE_URL=${SERVER_BASE_URL}
+      - SERVER_JWT_SECRET=${SERVER_JWT_SECRET}
+      - SERVER_SESSION_SECRET=${SERVER_SESSION_SECRET}
+      - MONGO_CONNECTION_URI=${MONGO_CONNECTION_URI}
+      - TIKTOK_CLIENT_SECRET=${TIKTOK_CLIENT_SECRET}
+      - TIKTOK_CLIENT_KEY=${TIKTOK_CLIENT_KEY}
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+  # tunnel is used as proxy to handle "TikTok auth callback" from localhost
+#  tunnel:
+#    image: cloudflare/cloudflared:2022.8.0
+#    restart: unless-stopped
+#    command: tunnel run
+#    environment:
+#      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+#    network_mode: host
+#    depends_on:
+#      - web
