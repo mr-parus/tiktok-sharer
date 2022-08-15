@@ -24,8 +24,6 @@ export function HomePage() {
   return (
     <Container>
       <video controls src={getHighlightSourceUrl({ highlightId: HIGHLIGHT_ID })} />
-      <br />
-      <br />
       <Button label={SHARE_BUTTON_TEXT} disabled={isButtonDisabled} onClick={onClick} />
     </Container>
   );

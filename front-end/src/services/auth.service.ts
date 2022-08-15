@@ -19,6 +19,10 @@ export class AuthService {
     this.jwtToken$.next(null);
   }
 
+  public setFakeToken(): void {
+    this.jwtToken$.next('<TOKEN>');
+  }
+
   public async getNewJwtToken(): Promise<string | null> {
     const [response] = await this.httpClient.sendRequest<{ jwtToken: string }>({ url: getNewJwtTokenUrl() });
     const token = response?.data?.jwtToken || null;

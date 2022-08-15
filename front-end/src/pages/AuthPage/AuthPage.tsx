@@ -6,10 +6,11 @@ import { getAuthViaTikTokUrl } from '../../utils/apiRouting.util';
 import { redirect } from '../../utils/navigator.util';
 
 export const SIGN_UP_BUTTON_TEXT = 'sign up with tiktok';
+export const FAKE_AUTH_BUTTON_TEXT = 'fake auth';
 export const TIKTOK_AUTH_REDIRECTION_TIMEOUT = 3000; // in ms
 
 export function AuthPage() {
-  const { notificationsService } = useContext(ServicesContext);
+  const { notificationsService, authService } = useContext(ServicesContext);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const onClick = () => {
@@ -21,6 +22,7 @@ export function AuthPage() {
   return (
     <Container>
       <Button label={SIGN_UP_BUTTON_TEXT} disabled={isButtonDisabled} onClick={onClick} />
+      <Button label={FAKE_AUTH_BUTTON_TEXT} onClick={() => authService.setFakeToken()} />
     </Container>
   );
 }
