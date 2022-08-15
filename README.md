@@ -77,3 +77,15 @@ npm run start:dev
 
 ### Modules architecture
 ![Architecture diagram](https://drive.google.com/uc?id=1AptOEx5wJ9Vyfuw9EK3B5t1dvvMMPeXI)
+
+## Tests
+### Back-end
+- [auth.controller.spec.ts](./back-end/apps/tiktok-sharer/src/auth/controllers/auth.controller.spec.ts)
+- [auth.guard.spec.ts](./back-end/apps/tiktok-sharer/src/auth/guards/auth.guard.spec.ts)
+- [highlights.controller.spec.ts](./back-end/apps/tiktok-sharer/src/highlights/controllers/highlights.controller.spec.ts)
+
+### Frontend
+- [auth.service.test.ts](./front-end/src/services/auth.service.test.ts)
+- [Button.test.tsx](./front-end/src/components/Button/Button.test.tsx)
+- [AuthPage.test.tsx](./front-end/src/pages/AuthPage/AuthPage.test.tsx)
+- [HomePage.test.tsx](./front-end/src/pages/HomePage/HomePage.test.tsx)
