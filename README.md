@@ -48,8 +48,13 @@ docker-compose up
 ### Start locally (dev)
 ```shell
 # create config file in the /back-end/.env
+# /back-end
 npm install
 npm run start:dev
+
+# /front-end
+npm install
+npm run start
 ```
 
 ## Documentation
