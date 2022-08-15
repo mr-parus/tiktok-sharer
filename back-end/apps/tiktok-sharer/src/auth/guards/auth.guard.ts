@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     const jwtToken = getJwtTokenFromAuthHeader(request.headers.authorization);
 
     if (!jwtToken) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('JWT token is missing');
     }
 
     const accessRights = await this.authService.authByJwtToken(jwtToken);

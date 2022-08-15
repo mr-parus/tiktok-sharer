@@ -8,22 +8,21 @@ import {
   Res,
   Session,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import type { Response } from 'express';
 import { API_ROUTES_PREFIX } from '../../app/constants';
+import { AuthGuard } from '../../auth/guards/auth.guard';
 import { SessionInterface } from '../../auth/interfaces/session.interface';
-import { AuthService } from '../../auth/services/auth.service';
 
 const HIGHLIGHT_ID_PARAM = 'highlightId';
 
 @Controller(`${API_ROUTES_PREFIX}/v1/highlights`)
 export class HighlightsController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly highlightsService: HighlightsService,
-  ) {}
+  constructor(private readonly highlightsService: HighlightsService) {}
 
   @Post(`/:${HIGHLIGHT_ID_PARAM}/share-to-tiktok`)
+  @UseGuards(AuthGuard)
   async shareHighlightToTikTok(
     @Param(HIGHLIGHT_ID_PARAM) highlightId: string,
     @Session() session: SessionInterface,
